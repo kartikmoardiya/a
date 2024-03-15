@@ -7,13 +7,15 @@ const routeRoute = require('./routeRoutes')
 const bodyParser = require('body-parser'); 
 app.use(bodyParser.json());
 
+app.use('/bus',busRoute);
+app.use('/r',routeRoute);
+
 app.use("/", (res,resp)=>{
     resp.json({
         msg : "msg"
     })
 })
-app.use(busRoute);
-app.use(routeRoute);
+
 
 
 app.listen(4500);
