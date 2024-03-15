@@ -5,10 +5,9 @@ const Bus = require('./bus')
 const Route = require('./route')
 
 // get all the detail about buses which are aviable for current src and dest stations
-router.get("/getdetail", async (req, resp) => {
-    const src = "a"
-    const checkSrcOfRoute = await Route.find({ srcStation: src });
-    const checkDestOfRoute = await Route.find({ destStation: src });
+router.get("/getdetail/:src", async (req, resp) => {
+    const checkSrcOfRoute = await Route.find({ srcStation: req.params.src });
+    const checkDestOfRoute = await Route.find({ destStation: req.params.src });
     if (checkSrcOfRoute) {
         if (checkSrcOfRoute.length === 0) {
             if (checkDestOfRoute) {
