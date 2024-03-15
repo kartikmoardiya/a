@@ -5,9 +5,10 @@ const Bus = require('./bus')
 const Route = require('./route')
 
 // get all the detail about buses which are aviable for current src and dest stations
-router.get("/getdetail/:src", async (req, resp) => {
-    const checkSrcOfRoute = await Route.find({ srcStation: req.params.src });
-    const checkDestOfRoute = await Route.find({ destStation: req.params.src });
+router.get("/getdetail", async (req, resp) => {
+    const src = "a"
+    const checkSrcOfRoute = await Route.find({ srcStation: src });
+    const checkDestOfRoute = await Route.find({ destStation: src });
     if (checkSrcOfRoute) {
         if (checkSrcOfRoute.length === 0) {
             if (checkDestOfRoute) {
@@ -39,8 +40,8 @@ router.get("/getdetail/:src", async (req, resp) => {
 
 })
 
-router.get("/getallstation/:bus", async (req, resp) => {
-    const getallstation = await Bus.find({ bus: req.params.bus });// one type of aaray male
+router.get("/getallstation", async (req, resp) => {
+    const getallstation = await Bus.find({ bus: "1" });// one type of aaray male
     if (getallstation) {
 
 
@@ -62,4 +63,6 @@ router.get("/getallstation/:bus", async (req, resp) => {
         Error: "Bus Not Found Internal Server Problem"
     })
 })
+
+
 module.exports = router

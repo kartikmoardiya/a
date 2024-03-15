@@ -17,4 +17,6 @@ app.use("/", (res,resp)=>{
     })
 })
 
-app.listen(PORT);
+app.listen(PORT, ()=>{
+    console.log("")
+});
