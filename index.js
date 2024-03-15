@@ -7,11 +7,11 @@ const routeRoute = require('./routeRoutes')
 const bodyParser = require('body-parser'); 
 app.use(bodyParser.json());
 
-// app.use("/", (res,resp)=>{
-//     resp.json({
-//         msg : "msg"
-//     })
-// })
+app.use("/", (res,resp)=>{
+    resp.json({
+        msg : "msg"
+    })
+})
 app.use('/',busRoute);
 // app.use('/a',routeRoute);
 
