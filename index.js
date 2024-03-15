@@ -6,7 +6,7 @@ const busRoute = require('./busRoutes')
 const routeRoute = require('./routeRoutes')
 const bodyParser = require('body-parser'); 
 app.use(bodyParser.json());
-app.use('/bus',busRoute);
+// app.use('/bus',busRoute);
 // app.use('/route',routeRoute);
 
 app.use("/", (res,resp)=>{
