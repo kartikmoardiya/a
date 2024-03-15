@@ -39,8 +39,8 @@ router.get("/getdetail/:src", async (req, resp) => {
 
 })
 
-router.get("/getallstation", async (req, resp) => {
-    const getallstation = await Bus.find({ bus: "1" });// one type of aaray male
+router.get("/getallstation/:bus", async (req, resp) => {
+    const getallstation = await Bus.find({ bus: req.params.bus });// one type of aaray male
     if (getallstation) {
 
 
