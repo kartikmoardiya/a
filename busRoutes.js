@@ -61,18 +61,18 @@ router.post("/new", async (req, resp) => {
 })
 
 // Update bus stations at the end of last station
-router.put("/add/:bus", async (req, resp) => {
+router.put("/add", async (req, resp) => {
 
     const currentData = req.body;
 
     // Check Bus Exists or not 
-    const existingUser = await Bus.findOne({ bus: req.params.bus });
+    const existingUser = await Bus.findOne({ bus: '51' });
     if (!existingUser) {
         return resp.status(202).json({ error: 'Bus Not exists' });
     }
 
     // Before save new data take all the stations wuth their station number --> FirstArray
-    const dataFromTable = await Bus.findOne({ bus: req.params.bus });
+    const dataFromTable = await Bus.findOne({ bus: '51' });
     let firstArray = dataFromTable.stations
 
     // For Ordering Purpose get number of avaiable stations
@@ -120,7 +120,7 @@ router.put("/add/:bus", async (req, resp) => {
 
     // Update in Route Collection
     // Set route of Bus
-    const dataForRoute = await Bus.findOne({ bus: req.params.bus });
+    const dataForRoute = await Bus.findOne({ bus: '51' });
 
     let stationsForRoute = dataForRoute.stations;
     let index = 0;
