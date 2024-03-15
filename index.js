@@ -4,8 +4,8 @@ const db = require('./db');
 const router = express.Router();
 const busRoute = require('./busRoutes')
 const routeRoute = require('./routeRoutes')
-const bodyParser = require('body-parser'); 
-app.use(bodyParser.json());
+// const bodyParser = require('body-parser'); 
+// app.use(bodyParser.json());
 
 app.use("/", (res,resp)=>{
     resp.json({
