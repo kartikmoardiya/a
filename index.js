@@ -10,7 +10,7 @@ const app = express();
 // app.use('/route',routeRoute);
 
 app.get("/",(req,resp)=>{
-    return resp.send("Welcome")
+    resp.send("Welcome")
 })
 // app.listen(4500);
 // git push
