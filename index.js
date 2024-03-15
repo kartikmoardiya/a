@@ -12,7 +12,7 @@ app.use("/", (res,resp)=>{
         msg : "msg"
     })
 })
-app.use('/a',busRoute);
+// app.use('/a',busRoute);
 // app.use('/a',routeRoute);
 
 
