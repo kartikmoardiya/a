@@ -14,7 +14,11 @@ app.use("/", (res,resp)=>{
     })
 })
 
-
+app.get("/hello",(res,resp)=>{
+    return resp.json({
+        msg : "hello"
+    })
+})
 app.use('/bus',busRoute);
 app.use('/r',routeRoute);
 
