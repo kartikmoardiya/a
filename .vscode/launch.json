@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/P_BRTS",
-      "program": "d:/P_BRTS/build/Debug/outDebug",
+      "cwd": "d:/PP_BRTS",
+      "program": "d:/PP_BRTS/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
