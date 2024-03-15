@@ -13,16 +13,8 @@ router.post("/new", async (req, resp) => {
         return resp.status(202).json({ Error: "Bus Already Existing" });
     }
 
-    const currentData = req.body;
-    let count = 0;
-
     // Get all objects of stations
-    let stationsArray = currentData.stations;
-
-    // Itreate all the object and give the number of all the station
-    stationsArray.forEach((element) => {
-        element.busNum = ++count;
-    })
+    let stationsArray = req.body.stations;
 
     // Save Bus Data
     const data = new Bus(req.body);

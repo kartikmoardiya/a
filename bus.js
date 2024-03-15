@@ -11,10 +11,6 @@ const busSchema = new mongoose.Schema({
             busStation : {
                 type : String,
                 required : true
-            },
-            busNum :{
-                type : Number,
-                required : true
             }
         }
     ]
