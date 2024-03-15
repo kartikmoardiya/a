@@ -6,14 +6,16 @@ const busRoute = require('./busRoutes')
 const routeRoute = require('./routeRoutes')
 const bodyParser = require('body-parser'); 
 app.use(bodyParser.json());
-app.use('/b',busRoute);
-app.use('/a',routeRoute);
 
-app.use("/", (res,resp)=>{
-    resp.json({
-        msg : "msg"
-    })
-})
+// app.use("/", (res,resp)=>{
+//     resp.json({
+//         msg : "msg"
+//     })
+// })
+app.use('/',busRoute);
+// app.use('/a',routeRoute);
+
+
 app.listen(4500);
 // git push
 
