@@ -7,12 +7,17 @@ const app = express();
 // const bodyParser = require('body-parser'); 
 // app.use(bodyParser.json());
 // app.use('/bus',busRoute);
-// app.use('/route',routeRoute);
+// // app.use('/route',routeRoute);
 
-app.get("/",(req,resp)=>{
-    return resp.status(200).send("Welcome")
+// app.get("/",(req,resp)=>{
+//     return resp.status(200).send("Welcome")
+// })
+app.use("/", (res,resp)=>{
+    resp.json({
+        msg : "msg"
+    })
 })
-// app.listen(4500);
+app.listen(4500);
 // git push
 
 // Comment added
