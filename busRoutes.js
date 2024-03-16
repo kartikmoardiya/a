@@ -31,8 +31,8 @@ router.post("/new", async (req, resp) => {
 
     for (let i = 0; i < numberOfStation; i++) {
         if (index < numberOfStation) {
-            let src = stationsForRoute[i].busStation;
-            let dest = stationsForRoute[i + 1].busStation;
+            let src = dataForRoute.stations[i].busStation;
+            let dest = dataForRoute.stations[i + 1].busStation;
 
             const checkSrcAndDestOfRoute = await Route.findOne({ srcStation: src, destStation: dest });
 
