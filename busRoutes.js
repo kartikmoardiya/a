@@ -5,52 +5,52 @@ const Bus = require('./bus')
 const Route = require('./route')
 
 // Add new bus
-router.post("/new", async (req, resp) => {
+    router.post("/new", async (req, resp) => {
 
-    // For Check Bus Exist Or Not 
-    const existingUser = await Bus.findOne({ bus: req.body.bus });
-    if (existingUser) {
-        return resp.status(202).json({ Error: "Bus Already Existing" });
-    }
+        // For Check Bus Exist Or Not 
+        const existingUser = await Bus.findOne({ bus: req.body.bus });
+        if (existingUser) {
+            return resp.status(200).json({ Error: "Bus Already Existing" });
+        }
 
-    // Get all objects of stations
-    let stationsArray = req.body.stations;
+        // Get all objects of stations
+        let stationsArray = req.body.stations;
 
-    // Save Bus Data
-    const data = new Bus(req.body);
-    const busData = await data.save();
+        // Save Bus Data
+        const data = new Bus(req.body);
+        const busData = await data.save();
 
 
-    // Update in Route Collection
-    // Set route of Bus
-    const dataForRoute = await Bus.findOne({ bus: req.body.bus });
+        // Update in Route Collection
+        // Set route of Bus
+        const dataForRoute = await Bus.findOne({ bus: req.body.bus });
 
-    let stationsForRoute = dataForRoute.stations;
-    let index = 0;
-    let numberOfStation = dataForRoute.stations.length - 1;
+        let stationsForRoute = dataForRoute.stations;
+        let index = 0;
+        let numberOfStation = dataForRoute.stations.length - 1;
 
-    for (let i = 0; i < numberOfStation; i++) {
-        if (index < numberOfStation) {
-            let src = dataForRoute.stations[i].busStation;
-            let dest = dataForRoute.stations[i + 1].busStation;
+        for (let i = 0; i < numberOfStation; i++) {
+            if (index < numberOfStation) {
+                let src = dataForRoute.stations[i].busStation;
+                let dest = dataForRoute.stations[i + 1].busStation;
 
-            const checkSrcAndDestOfRoute = await Route.findOne({ srcStation: src, destStation: dest });
+                const checkSrcAndDestOfRoute = await Route.findOne({ srcStation: src, destStation: dest });
 
-            if (checkSrcAndDestOfRoute) {
-                checkSrcAndDestOfRoute.busNumbers.push({ separateBus: req.body.bus });
-                await checkSrcAndDestOfRoute.save();
-            } else {
-                const temp = {
-                    srcStation: src,
-                    destStation: dest,
-                    busNumbers: [{ separateBus: req.body.bus }]
+                if (checkSrcAndDestOfRoute) {
+                    checkSrcAndDestOfRoute.busNumbers.push({ separateBus: req.body.bus });
+                    await checkSrcAndDestOfRoute.save();
+                } else {
+                    const temp = {
+                        srcStation: src,
+                        destStation: dest,
+                        busNumbers: [{ separateBus: req.body.bus }]
+                    }
+                    const insertRoute = await Route.insertMany(temp);
                 }
-                const insertRoute = await Route.insertMany(temp);
             }
         }
-    }
-    return resp.status(200).json({ Message: "Added Successfully" })
-})
+        return resp.status(200).json({ Message: "Added Successfully" })
+    })
 
 // Update bus stations at the end of last station
 router.put("/add/:bus", async (req, resp) => {
