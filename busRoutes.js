@@ -10,7 +10,9 @@ const Route = require('./route')
         // For Check Bus Exist Or Not 
         const existingUser = await Bus.findOne({ bus: req.body.bus });
         if (existingUser) {
-            return resp.status(200).json({ Error: "Bus Already Existing" });
+            // return resp.status(200).json({ Error: "Bus Already Existing" });
+            return resp.status(200);
+
         }
 
         // Get all objects of stations
@@ -49,7 +51,9 @@ const Route = require('./route')
                 }
             }
         }
-        return resp.status(200).json({ Message: "Added Successfully" })
+        // return resp.status(200).json({ Message: "Added Successfully" })
+        return resp.status(200);
+
     })
 
 // Update bus stations at the end of last station
@@ -60,7 +64,8 @@ router.put("/add/:bus", async (req, resp) => {
     // Check Bus Exists or not 
     const existingUser = await Bus.findOne({ bus: req.params.bus });
     if (!existingUser) {
-        return resp.status(202).json({ error: 'Bus Not exists' });
+        // return resp.status(202).json({ error: 'Bus Not exists' });
+        return resp.status(200);
     }
 
     // Before save new data take all the stations wuth their station number --> FirstArray
@@ -99,8 +104,8 @@ router.put("/add/:bus", async (req, resp) => {
 
     // Old and new station match thay to station already existing
     if (flag == 1) {
-        return resp.status(202).json({ Error: "Stations Already Existing" });
-
+        // return resp.status(202).json({ Error: "Stations Already Existing" });
+        return resp.status(202);
     }
 
     // After getting old and new array update bus stations
@@ -139,7 +144,9 @@ router.put("/add/:bus", async (req, resp) => {
         }
     }
 
-    return resp.status(200).json({ Update: "Station Added Successfully" });
+    // return resp.status(200).json({ Update: "Station Added Successfully" });
+    return resp.status(200);
+
 })
 
 // Add Stationa at middle
